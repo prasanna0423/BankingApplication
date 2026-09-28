@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Welcome, {{ user.username }}</h1>
+
+<div class="card">
+
+    <h2>Account Details</h2>
+
+    <p>
+        <strong>Account Number:</strong>
+        {{ account.account_number }}
+    </p>
+
+    <p>
+        <strong>Account Type:</strong>
+        {{ account.account_type }}
+    </p>
+
+    <h2 style="margin-top: 20px;">
+        Balance: ₹{{ account.balance|floatformat:2 }}
+    </h2>
+
+</div>
+
+
+<div class="card">
+
+    <h2>Recent Transactions</h2>
+
+    {% if transactions %}
+
+        <table>
+
+            <tr>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Date</th>
+            </tr>
+
+            {% for transaction in transactions %}
+
+            <tr>
+
+                <td>
+                    {{ transaction.transaction_type }}
+                </td>
+
+                <td>
+                    ₹{{ transaction.amount|floatformat:2 }}
+                </td>
+
+                <td>
+                    {{ transaction.created_at|date:"d M Y, h:i A" }}
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    {% else %}
+
+        <p>No transactions yet.</p>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

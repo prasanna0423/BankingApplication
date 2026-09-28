@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Banking Application</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+        }
+
+        nav {
+            background: #1f2937;
+            padding: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 30px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<nav>
+
+    <a href="/">Banking App</a>
+
+    {% if user.is_authenticated %}
+
+        <a href="/dashboard/">Dashboard</a>
+        <a href="/deposit/">Deposit</a>
+        <a href="/withdraw/">Withdraw</a>
+        <a href="/transfer/">Transfer</a>
+        <a href="/transactions/">Transactions</a>
+        <a href="/logout/">Logout</a>
+
+    {% else %}
+
+        <a href="/login/">Login</a>
+        <a href="/register/">Register</a>
+
+    {% endif %}
+
+</nav>
+
+<div class="container">
+
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+
+    {% block content %}
+    {% endblock %}
+
+</div>
+
+</body>
+</html>

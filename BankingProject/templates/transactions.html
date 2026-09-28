@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Transaction History</h1>
+
+<div class="card">
+
+    {% if transactions %}
+
+        <div style="overflow-x: auto;">
+
+            <table>
+
+                <tr>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                </tr>
+
+                {% for transaction in transactions %}
+
+                <tr>
+
+                    <td>
+                        {{ transaction.transaction_type }}
+                    </td>
+
+                    <td>
+                        ₹{{ transaction.amount|floatformat:2 }}
+                    </td>
+
+                    <td>
+                        {{ transaction.description }}
+                    </td>
+
+                    <td>
+                        {{ transaction.created_at|date:"d M Y, h:i A" }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+    {% else %}
+
+        <p>No transactions found.</p>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
